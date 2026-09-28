@@ -2,6 +2,16 @@
 
 En satirisk, fiktiv reklambyrå byggd med React, TypeScript och Vite. Revision 2 följer AGENTS.md: grå FrontPage-estetik, sex obegripliga tjänster, RGB-knappar och aggressiv internreklam.
 
+## AI-genererat projekt
+
+**All kod som tas fram för GRÅZON är och kommer att vara AI-genererad. Detsamma gäller projektets bilder och ljudklipp, inklusive röster och framtida telefonmeddelanden.**
+
+Projektet är ett experiment i AI-driven utveckling och berättande för ett satiriskt ARG. Människor står för idéer, instruktioner, urval och granskning; AI används för att generera kod och medieinnehåll. Befintliga ramverk och tredjepartsbibliotek har sina respektive upphovspersoner och licenser.
+
+Ljudklipp är ännu inte tillagda. Även dessa kommer att vara AI-genererade när de införs.
+
+Projektets repository: [VibeARG/Greyzone](https://github.com/VibeARG/Greyzone).
+
 ## Kör lokalt
 
 ```sh
@@ -37,4 +47,3 @@ Verifierat i in-app-webbläsaren: desktop 1366×900 och mobil 390×844, laddade 
 
 ## ARG-växel
 Telefonknappen öppnar nu en tom manuell knappsats. Besökaren skriver numret eller använder sifferknapparna och trycker Ring. Sidans fiktiva växelnummer (000–00 00 42) öppnar Samtal lyckat; andra nummer ger en ledtråd. Mellanslag, bindestreck och parenteser accepteras. Inmatningen återställs vid nästa öppning och sparas inte. Verifierat i webbläsaren med fel nummer och det formaterade korrekta numret. Ny bild: dial-preview.png.
-# Greyzone
