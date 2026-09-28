@@ -72,25 +72,59 @@ export function PopupSystem({ paused, signal, onKill }: { paused: boolean; signa
 export function PhoneButton() {
   const dialog = useRef<HTMLDialogElement>(null)
   const [number, setNumber] = useState('')
-  const [connected, setConnected] = useState(false)
+  const audio = useRef<HTMLAudioElement>(null)
+  const playbackId = useRef(0)
+  const [phase, setPhase] = useState<'idle' | 'calling' | 'voicemail' | 'wrong'>('idle')
+  const [audioError, setAudioError] = useState('')
+  const connected = phase === 'calling' || phase === 'voicemail'
+  useEffect(() => {
+    const player = audio.current
+    const generation = playbackId
+    return () => { generation.current++; player?.pause(); player?.removeAttribute('src'); player?.load() }
+  }, [])
+  const stopAudio = () => {
+    playbackId.current++
+    audio.current?.pause()
+    audio.current?.removeAttribute('src')
+    audio.current?.load()
+    setPhase('idle')
+    setAudioError('')
+  }
+  const playClip = (next: 'calling' | 'voicemail' | 'wrong') => {
+    const player = audio.current
+    if (!player) return
+    const id = ++playbackId.current
+    player.pause()
+    player.src = `/audio/${next === 'wrong' ? 'wrong-number' : next}.mp3`
+    setPhase(next)
+    setAudioError('')
+    void player.play().catch(() => {
+      if (id === playbackId.current) setAudioError('Ljudet kunde inte starta. Tryck på spela i ljudspelaren för att försöka igen.')
+    })
+  }
   const [error, setError] = useState('')
   const editNumber = (value: string) => {
+    if (phase === 'wrong') stopAudio()
     setNumber(value.slice(0, 24))
     setError('')
   }
   return <>
     <button type="button" className="phone-button" onClick={() => {
-      setNumber(''); setConnected(false); setError(''); dialog.current?.showModal()
+      stopAudio(); setNumber(''); setError(''); dialog.current?.showModal()
     }}>☎ ÖPPNA KONCEPTVÄXELN</button>
-    <dialog ref={dialog} className="phone-dialog" aria-labelledby="phone-title">
+    <dialog ref={dialog} className="phone-dialog" aria-labelledby="phone-title" onClose={stopAudio} onCancel={stopAudio}>
       <div className="titlebar"><span>☎ GRÅZON — konceptväxeln</span><button className="close" aria-label="Stäng telefondialog" onClick={() => dialog.current?.close()}>×</button></div>
       <div className="phone-body">
-        <h2 id="phone-title">{connected ? 'Samtal lyckat' : 'Manuell konceptväxel'}</h2>
-        {connected ? <div role="status"><span className="call-connected">☎ LINJEN ÄR ÖPPEN</span><p>Du har kommit till Gråzon. Eller konceptcentralen.</p><p className="dialled-number">{number}</p></div> : <form onSubmit={event => {
+        <h2 id="phone-title">{phase === 'calling' ? 'Kopplar samtal…' : phase === 'voicemail' ? 'Samtal lyckat' : 'Manuell konceptväxel'}</h2>
+        {connected ? <div role="status"><span className="call-connected">{phase === 'calling' ? '☎ SIGNALER GÅR FRAM' : '☎ LINJEN ÄR ÖPPEN'}</span><p>{phase === 'calling' ? 'Vänta medan konceptcentralen lokaliserar sin telefon.' : 'Du har kommit till Gråzon. Eller konceptcentralen.'}</p><p className="dialled-number">{number}</p></div> : <form onSubmit={event => {
           event.preventDefault()
           const dialled = number.replace(/[\s()–—-]/g, '')
-          if (dialled === '000000042') { setConnected(true); setError('') }
-          else setError(dialled ? 'Numret saknar strategisk anknytning. Leta efter växelnumret på sidan.' : 'Växeln behöver ett nummer. Även otydlighet har sina gränser.')
+          if (dialled === '000000042') { setError(''); playClip('calling') }
+          else {
+            if (dialled) playClip('wrong')
+            else stopAudio()
+            setError(dialled ? 'Numret saknar strategisk anknytning. Leta efter växelnumret på sidan.' : 'Växeln behöver ett nummer. Även otydlighet har sina gränser.')
+          }
         }}>
           <p>Du måste veta vart du ska ringa.<br />Växeln tänker inte åt dig. Längre.</p>
           <label className="dial-label" htmlFor="dial-number">Nummer att ringa</label>
@@ -100,6 +134,8 @@ export function PhoneButton() {
           <p id="dial-feedback" className="dial-feedback" role="status">{error || 'LINJE LEDIG / INVÄNTAR MANUELL INMATNING'}</p>
           <button type="submit" className="dial-call">☎ RING</button>
         </form>}
+        <audio ref={audio} controls preload="none" hidden={phase === 'idle'} aria-label="Telefonljud" style={{ width: '100%' }} onEnded={() => { if (phase === 'calling' && dialog.current?.open) playClip('voicemail') }} onError={() => { if (audio.current?.hasAttribute('src')) setAudioError('Ljudfilen kunde inte laddas. Stäng växeln och försök igen.') }} />
+        {audioError && <p role="status">{audioError}</p>}
         <small>Speltelefon. Inget riktigt samtal kopplas och inget nummer sparas.</small>
         <form method="dialog"><button>{connected ? 'LÄGG PÅ' : 'STÄNG VÄXELN'}</button></form>
       </div>
