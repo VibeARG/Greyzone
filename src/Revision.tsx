@@ -99,7 +99,7 @@ export function PhoneButton() {
     setPhase(next)
     setAudioError('')
     void player.play().catch(() => {
-      if (id === playbackId.current) setAudioError('Ljudet kunde inte starta. Tryck på spela i ljudspelaren för att försöka igen.')
+      if (id === playbackId.current) setAudioError('Linjen kunde inte öppnas. Stäng växeln och ring igen.')
     })
   }
   const [error, setError] = useState('')
@@ -134,7 +134,7 @@ export function PhoneButton() {
           <p id="dial-feedback" className="dial-feedback" role="status">{error || 'LINJE LEDIG / INVÄNTAR MANUELL INMATNING'}</p>
           <button type="submit" className="dial-call">☎ RING</button>
         </form>}
-        <audio ref={audio} controls preload="none" hidden={phase === 'idle'} aria-label="Telefonljud" style={{ width: '100%' }} onEnded={() => { if (phase === 'calling' && dialog.current?.open) playClip('voicemail') }} onError={() => { if (audio.current?.hasAttribute('src')) setAudioError('Ljudfilen kunde inte laddas. Stäng växeln och försök igen.') }} />
+        <audio ref={audio} preload="none" hidden aria-hidden="true" onEnded={() => { if (phase === 'calling' && dialog.current?.open) playClip('voicemail') }} onError={() => { if (audio.current?.hasAttribute('src')) setAudioError('Ljudfilen kunde inte laddas. Stäng växeln och försök igen.') }} />
         {audioError && <p role="status">{audioError}</p>}
         <small>Speltelefon. Inget riktigt samtal kopplas och inget nummer sparas.</small>
         <form method="dialog"><button>{connected ? 'LÄGG PÅ' : 'STÄNG VÄXELN'}</button></form>
