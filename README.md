@@ -49,3 +49,8 @@ Verifierat i in-app-webbläsaren: desktop 1366×900 och mobil 390×844, laddade 
 Telefonknappen öppnar nu en tom manuell knappsats. Besökaren skriver numret eller använder sifferknapparna och trycker Ring. Sidans fiktiva växelnummer (000–00 00 42) öppnar Samtal lyckat; andra nummer ger en ledtråd. Mellanslag, bindestreck och parenteser accepteras. Inmatningen återställs vid nästa öppning och sparas inte. Verifierat i webbläsaren med fel nummer och det formaterade korrekta numret. Ny bild: dial-preview.png.
 
 Ljudflödet är verifierat i webbläsaren: fel nummer spelar wrong-number.mp3; rätt nummer spelar calling.mp3 och växlar automatiskt till voicemail.mp3. Lägg på stoppar spelaren och tar bort ljudkällan.
+
+## Lyckohjul
+20 lika sannolika fält (5 % per fält). Nitton vinster leder till Wikipedias svenska slumpartikel; stjärnvinsten leder till Rick Astleys Never Gonna Give You Up på YouTube. Efter snurrningen visas en modal vinstpopup med åtta sekunders nedräkning. Vidarebefordran kan avbrytas, och kryss/Escape stänger popupen och stoppar nedräkningen. Minskad rörelse hoppar över snurranimationen. Inga pengar eller köp förekommer.
+
+Verifierat: snurrning, vinstpopup, Wikipedia-länk och avbruten vidarebefordran i webbläsaren, samt pilens slutposition för samtliga 20 fält över flera rotationer.
