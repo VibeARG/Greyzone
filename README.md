@@ -54,3 +54,8 @@ Ljudflödet är verifierat i webbläsaren: fel nummer spelar wrong-number.mp3; r
 20 lika sannolika fält (5 % per fält). Nitton vinster leder till Wikipedias svenska slumpartikel; stjärnvinsten leder till Rick Astleys Never Gonna Give You Up på YouTube. Efter snurrningen visas en modal vinstpopup med åtta sekunders nedräkning. Vidarebefordran kan avbrytas, och kryss/Escape stänger popupen och stoppar nedräkningen. Minskad rörelse hoppar över snurranimationen. Inga pengar eller köp förekommer.
 
 Verifierat: snurrning, vinstpopup, Wikipedia-länk och avbruten vidarebefordran i webbläsaren, samt pilens slutposition för samtliga 20 fält över flera rotationer.
+
+## Inför publicering
+Kundcase och referenser omfattas numera av Gråzons orimliga sekretessavtal. Sidans AI- och satirinformation finns samlad i det läsbara meddelandet högst upp. Radical PI länkar tills vidare till GitHub.
+
+Besöksstatistiken börjar på 9 996 och uppdateras var 1,8 sekund till 10 000. Milstolpsannonsen visas högst en gång per sidladdning; stängning eller global annonsstängning förbrukar visningen. Om annonser redan är pausade väntar milstolpen tills pausen upphör. Räknaren stannar på 10 000 medan simulerade aktivitetsvärden fortsätter uppdateras. Statistikpanelen visas även på mobil.
