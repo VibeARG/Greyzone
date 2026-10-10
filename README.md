@@ -12,6 +12,12 @@ Telefonens AI-genererade och redigerade ljudklipp finns lokalt i public/audio/.
 
 Projektets repository: [VibeARG/Greyzone](https://github.com/VibeARG/Greyzone).
 
+## Publicerade adresser
+
+- [Gråzon](https://salmon-meadow-073c6ce10.6.azurestaticapps.net/)
+- [Radical PI](https://calm-water-021ca2a10.3.azurestaticapps.net/)
+- [Portfolio](https://augustvilliam.se) – inväntar DNS-aktivering.
+
 ## Kör lokalt
 
 ```sh
@@ -37,7 +43,7 @@ npm run preview
 - DÖDA ANNONSER i den fasta statusraden döljer annonserna direkt. De återkommer efter slumpmässigt 5–20 sekunder. Escape stänger senaste popupen.
 - Annonsfönster stjäl inte fokus. Telefonen använder en riktig HTML-dialog med fokus, Escape-stöd och texten Samtal lyckat. Rätt nummer spelar calling.mp3 följt av voicemail.mp3 när ringsignalen slutar. Fel nummer spelar wrong-number.mp3. Ljudet stoppas vid stängning, Escape eller avmontering; telefonkomponenten finns i src/Revision.tsx.
 - RGB-knappar ändrar rubrik, räknar synergi och startar en avbrytbar laddning till 97 %. Effekter respekterar prefers-reduced-motion och pausas vid fokus/hovring.
-- Portfolio, Radical PI och projektannonser länkar tills vidare till https://github.com/Augustvilliam. Adresserna finns samlade i projectLinks i src/Revision.tsx.
+- Portfolio och Radical PI länkar till sina egna adresser ovan. Övriga projektannonser länkar till https://github.com/Augustvilliam. Adresserna finns samlade i projectLinks i src/Revision.tsx.
 - Den genererade fiktiva stockbilden ligger lokalt i public/agency-stock.png. Ingen extern bildtjänst används vid sidvisning.
 - Timers och tangentbordslyssnare städas vid avmontering. Automatisk annonsgenerering hoppas över när dokumentet är dolt.
 
@@ -56,6 +62,6 @@ Ljudflödet är verifierat i webbläsaren: fel nummer spelar wrong-number.mp3; r
 Verifierat: snurrning, vinstpopup, Wikipedia-länk och avbruten vidarebefordran i webbläsaren, samt pilens slutposition för samtliga 20 fält över flera rotationer.
 
 ## Inför publicering
-Kundcase och referenser omfattas numera av Gråzons orimliga sekretessavtal. Sidans AI- och satirinformation finns samlad i det läsbara meddelandet högst upp. Radical PI länkar tills vidare till GitHub.
+Kundcase och referenser omfattas numera av Gråzons orimliga sekretessavtal. Sidans AI- och satirinformation finns samlad i det läsbara meddelandet högst upp. Radical PI länkar till sin publicerade Azure-adress.
 
 Besöksstatistiken börjar på 9 996 och uppdateras var 1,8 sekund till 10 000. Milstolpsannonsen visas högst en gång per sidladdning; stängning eller global annonsstängning förbrukar visningen. Om annonser redan är pausade väntar milstolpen tills pausen upphör. Räknaren stannar på 10 000 medan simulerade aktivitetsvärden fortsätter uppdateras. Statistikpanelen visas även på mobil.
